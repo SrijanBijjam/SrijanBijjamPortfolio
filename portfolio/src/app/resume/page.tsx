@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Footer from '../components/footer'
 
 export default function Resume() {
   return (
@@ -28,6 +29,7 @@ export default function Resume() {
           </Link>
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

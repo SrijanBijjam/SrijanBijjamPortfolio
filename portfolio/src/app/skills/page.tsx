@@ -2,6 +2,7 @@
 
 import PageWrapper from '../components/page-wrapper';
 import ScrollNav from '../components/scroll';
+import Footer from '../components/footer';
 import { motion } from 'framer-motion';
 import {
   JavaOriginal,
@@ -69,7 +70,7 @@ export default function Skills() {
     <>
       <ScrollNav />
       <PageWrapper>
-        <main className="flex min-h-screen flex-col items-center justify-center p-[3vw] sm:p-[4vw] md:p-[5vw] lg:p-[6vw]">
+        <main className="flex min-h-screen flex-col items-center justify-between p-[3vw] sm:p-[4vw] md:p-[5vw] lg:p-[6vw]">
           <div className="w-full max-w-[85vw] mx-auto space-y-[3vh]">
             <section className="space-y-[2vh]">
               <h2 className="text-[3vw] sm:text-[2.5vw] md:text-[2vw] font-bold text-[#CC9528]">Programming Languages</h2>
@@ -125,6 +126,7 @@ export default function Skills() {
               </div>
             </section>
           </div>
+          <Footer />
         </main>
       </PageWrapper>
     </>
