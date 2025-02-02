@@ -15,7 +15,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/srijanlogoHeader.png"
+              src="/srijanlogoHeader.PNG"
               alt="Srijan Logo"
               width={100}
               height={100}

@@ -11,20 +11,8 @@ export default function ScrollNav() {
   const pathname = usePathname()
   const currentIndex = routes.indexOf(pathname)
   const [isScrolling, setIsScrolling] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  useEffect(() => {
-    if (isMobile) return
-
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
       if (isScrolling) return
@@ -40,14 +28,43 @@ export default function ScrollNav() {
       }
     }
 
-    document.addEventListener('wheel', handleWheel, { passive: false })
-    return () => document.removeEventListener('wheel', handleWheel)
-  }, [currentIndex, router, isScrolling, isMobile])
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY
+    }
 
-  if (isMobile) return null
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isScrolling) return
+      const touchEndY = e.touches[0].clientY
+      const deltaY = touchStartY - touchEndY
+
+      if (Math.abs(deltaY) > 50) { // Threshold for swipe
+        if (deltaY > 0 && currentIndex < routes.length - 1) {
+          setIsScrolling(true)
+          router.push(routes[currentIndex + 1])
+          setTimeout(() => setIsScrolling(false), 1000)
+        } else if (deltaY < 0 && currentIndex > 0) {
+          setIsScrolling(true)
+          router.push(routes[currentIndex - 1])
+          setTimeout(() => setIsScrolling(false), 1000)
+        }
+      }
+    }
+
+    let touchStartY = 0
+
+    document.addEventListener('wheel', handleWheel, { passive: false })
+    document.addEventListener('touchstart', handleTouchStart)
+    document.addEventListener('touchmove', handleTouchMove)
+
+    return () => {
+      document.removeEventListener('wheel', handleWheel)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchmove', handleTouchMove)
+    }
+  }, [currentIndex, router, isScrolling])
 
   return (
-    <div className="fixed right-[10vw] top-1/2 -translate-y-1/2 flex flex-col gap-4">
+    <div className="fixed right-4 md:right-[10vw] top-1/2 -translate-y-1/2 flex flex-col gap-4 z-40">
       {routes.map((route, index) => (
         <motion.button
           key={route}

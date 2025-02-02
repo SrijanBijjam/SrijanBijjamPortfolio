@@ -17,7 +17,7 @@ interface CardData {
 export default function Work() {
   const workExperience: CardData[] = [
     {
-      image: '/swift.PNG',
+      image: '/swift.png',
       title: 'SWIFT',
       description: 'Systems & Applications Engineering Intern',
       link: 'https://www.swift.com',
