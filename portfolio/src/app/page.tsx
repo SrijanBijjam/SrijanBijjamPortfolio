@@ -34,8 +34,8 @@ export default function Home() {
                   Hi, I&apos;m
                 </span>
               </div>
-              <p className={`${averiaLibre.className} text-[2vw] text-white max-w-[200%] relative z-10 ml-[15vw]`}>
-                I create practical and efficient technology solutions to solve real-world problems.
+              <p className={`${averiaLibre.className} text-[1.7vw] text-white max-w-[200%] relative z-10 ml-[15.5vw]`}>
+                tOSU Grad. Software Engineer. Chill Guy. Let&apos;s connect.
               </p>
             </div>
             <div className="flex-1 flex justify-center md:justify-center -ml-[10vw]">
