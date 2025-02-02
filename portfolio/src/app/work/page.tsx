@@ -51,7 +51,7 @@ export default function Work() {
       image: '/emotionrecognition.jpg',
       title: 'Emotion Recognition Model',
       description: 'Deep learning model for facial emotion recognition',
-      link: 'https://github.com/OSU-AI-Club/project-series-2023-resources/blob/main/EmotionRecognitionProject/EmotionDetection.ipynb',
+      link: 'https://colab.research.google.com/drive/1c4JUd9eLUHsSx3iriZ2Woj6SwrSy4LdY?usp=sharing',
       alt: 'Emotion Recognition Project'
     },
     {

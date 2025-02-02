@@ -45,7 +45,7 @@ export default function Home() {
                 width={250}
                 height={250}
                 priority
-                className="rounded-3xl w-[20vw] h-auto"
+                className="rounded-3xl w-[20vw] h-auto shadow-[0_0_15px_rgba(204,149,40,0.3)]"
               />
             </div>
           </div>

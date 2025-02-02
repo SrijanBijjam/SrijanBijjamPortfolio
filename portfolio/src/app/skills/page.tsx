@@ -70,57 +70,57 @@ export default function Skills() {
     <>
       <ScrollNav />
       <PageWrapper>
-        <main className="flex min-h-screen flex-col items-center justify-between p-[3vw] sm:p-[4vw] md:p-[5vw] lg:p-[6vw]">
-          <div className="w-full max-w-[85vw] mx-auto space-y-[3vh]">
+        <main className="flex min-h-screen flex-col items-center justify-between p-[2vw] sm:p-[3vw] md:p-[4vw] lg:p-[5vw]">
+          <div className="w-full max-w-[75vw] mx-auto space-y-[8vh]">
             <section className="space-y-[2vh]">
-              <h2 className="text-[3vw] sm:text-[2.5vw] md:text-[2vw] font-bold text-[#CC9528]">Programming Languages</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[2vw]">
+              <h2 className="text-[2.5vw] sm:text-[2vw] md:text-[1.5vw] font-bold text-[#CC9528]">Programming Languages</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1vw]">
                 {programmingLanguages.map((lang) => (
                   <motion.button
                     key={lang.name}
-                    className="flex items-center gap-[1vw] p-[1vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
+                    className="flex items-center gap-[0.5vw] p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div className="w-[4vw] sm:w-[3vw] md:w-[2vw] flex items-center justify-center">
+                    <div className="w-[2.5vw] sm:w-[1.8vw] md:w-[1.2vw] flex items-center justify-center">
                       {lang.icon}
                     </div>
-                    <span className="text-[2vw] sm:text-[1.5vw] md:text-[1.2vw]">{lang.name}</span>
+                    <span className="text-[1.2vw] sm:text-[1vw] md:text-[0.8vw]">{lang.name}</span>
                   </motion.button>
                 ))}
               </div>
             </section>
 
             <section className="space-y-[2vh]">
-              <h2 className="text-[3vw] sm:text-[2.5vw] md:text-[2vw] font-bold text-[#CC9528]">Languages</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-[2vw] w-[70%]">
+              <h2 className="text-[2.5vw] sm:text-[2vw] md:text-[1.5vw] font-bold text-[#CC9528]">Languages</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1vw]">
                 {languages.map((lang) => (
                   <motion.button
                     key={lang.name}
-                    className="flex items-center gap-[1vw] p-[1vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
+                    className="flex items-center gap-[0.5vw] p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div className="w-[4vw] sm:w-[3vw] md:w-[2vw] flex items-center justify-center">
+                    <div className="w-[2.5vw] sm:w-[1.8vw] md:w-[1.2vw] flex items-center justify-center">
                       {lang.icon}
                     </div>
-                    <span className="text-[2vw] sm:text-[1.5vw] md:text-[1.2vw]">{lang.name}</span>
+                    <span className="text-[1.2vw] sm:text-[1vw] md:text-[0.8vw]">{lang.name}</span>
                   </motion.button>
                 ))}
               </div>
             </section>
 
             <section className="space-y-[2vh]">
-              <h2 className="text-[3vw] sm:text-[2.5vw] md:text-[2vw] font-bold text-[#CC9528]">Technical Skills</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[2vw]">
+              <h2 className="text-[2.5vw] sm:text-[2vw] md:text-[1.5vw] font-bold text-[#CC9528]">Technical Skills</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1vw]">
                 {technicalSkills.map((skill) => (
                   <motion.button
                     key={skill.name}
-                    className="flex items-center gap-[1vw] p-[1vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
+                    className="flex items-center gap-[0.5vw] p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div className="w-[4vw] sm:w-[3vw] md:w-[2vw] flex items-center justify-center">
+                    <div className="w-[2.5vw] sm:w-[1.8vw] md:w-[1.2vw] flex items-center justify-center">
                       {skill.icon}
                     </div>
-                    <span className="text-[2vw] sm:text-[1.5vw] md:text-[1.2vw]">{skill.name}</span>
+                    <span className="text-[1.2vw] sm:text-[1vw] md:text-[0.8vw]">{skill.name}</span>
                   </motion.button>
                 ))}
               </div>

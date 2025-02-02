@@ -26,20 +26,35 @@ export default function Navbar() {
 
           {/* Desktop Navigation Icons */}
           <div className="hidden md:flex items-center gap-[2vw]">
-            <Link href="/resume" className="text-[#CC9528] hover:text-white transition-colors">
+            <Link href="/resume" className="text-[#CC9528] hover:text-white transition-colors relative group">
               <FileText className="w-[2vw] max-w-[24px] min-w-[20px] h-auto" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Resume
+              </span>
             </Link>
-            <Link href="https://github.com/SrijanBijjam" className="text-[#CC9528] hover:text-white transition-colors">
+            <Link href="https://github.com/SrijanBijjam" className="text-[#CC9528] hover:text-white transition-colors relative group">
               <Github className="w-[2vw] max-w-[24px] min-w-[20px] h-auto" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                GitHub
+              </span>
             </Link>
-            <Link href="https://www.linkedin.com/in/srijan-bijjam/" className="text-[#CC9528] hover:text-white transition-colors">
+            <Link href="https://www.linkedin.com/in/srijan-bijjam/" className="text-[#CC9528] hover:text-white transition-colors relative group">
               <Linkedin className="w-[2vw] max-w-[24px] min-w-[20px] h-auto" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                LinkedIn
+              </span>
             </Link>
-            <Link href="https://www.instagram.com/fiji_sriji/" className="text-[#CC9528] hover:text-white transition-colors">
+            <Link href="https://www.instagram.com/fiji_sriji/" className="text-[#CC9528] hover:text-white transition-colors relative group">
               <Instagram className="w-[2vw] max-w-[24px] min-w-[20px] h-auto" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Instagram
+              </span>
             </Link>
-            <Link href="mailto:srijan.bijjam@gmail.com" className="text-[#CC9528] hover:text-white transition-colors">
+            <Link href="mailto:srijan.bijjam@gmail.com" className="text-[#CC9528] hover:text-white transition-colors relative group">
               <Mail className="w-[2vw] max-w-[24px] min-w-[20px] h-auto" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Email
+              </span>
             </Link>
           </div>
 
@@ -55,20 +70,35 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-4 flex flex-col items-center bg-[#0E0E0E]/95">
-            <Link href="/resume" className="text-[#CC9528] hover:text-white transition-colors p-2">
+            <Link href="/resume" className="text-[#CC9528] hover:text-white transition-colors p-2 relative group">
               <FileText className="w-6 h-6" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Resume
+              </span>
             </Link>
-            <Link href="https://github.com/SrijanBijjam" className="text-[#CC9528] hover:text-white transition-colors p-2">
+            <Link href="https://github.com/SrijanBijjam" className="text-[#CC9528] hover:text-white transition-colors p-2 relative group">
               <Github className="w-6 h-6" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                GitHub
+              </span>
             </Link>
-            <Link href="https://www.linkedin.com/in/srijan-bijjam/" className="text-[#CC9528] hover:text-white transition-colors p-2">
+            <Link href="https://www.linkedin.com/in/srijan-bijjam/" className="text-[#CC9528] hover:text-white transition-colors p-2 relative group">
               <Linkedin className="w-6 h-6" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                LinkedIn
+              </span>
             </Link>
-            <Link href="https://www.instagram.com/fiji_sriji/" className="text-[#CC9528] hover:text-white transition-colors p-2">
+            <Link href="https://www.instagram.com/fiji_sriji/" className="text-[#CC9528] hover:text-white transition-colors p-2 relative group">
               <Instagram className="w-6 h-6" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Instagram
+              </span>
             </Link>
-            <Link href="mailto:srijan.bijjam@gmail.com" className="text-[#CC9528] hover:text-white transition-colors p-2">
+            <Link href="mailto:srijan.bijjam@gmail.com" className="text-[#CC9528] hover:text-white transition-colors p-2 relative group">
               <Mail className="w-6 h-6" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                Email
+              </span>
             </Link>
           </div>
         )}
