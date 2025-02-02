@@ -31,7 +31,7 @@ export default function Home() {
               />
               <div className="flex items-baseline gap-[2vw] relative z-10 ml-[15vw]">
                 <span className={`${kaushanScript.className} text-[4vw] text-white`}>
-                  Hi, I'm
+                  Hi, I&apos;m
                 </span>
               </div>
               <p className={`${averiaLibre.className} text-[2vw] text-white max-w-[200%] relative z-10 ml-[15vw]`}>
@@ -41,7 +41,7 @@ export default function Home() {
             <div className="flex-1 flex justify-center md:justify-center -ml-[10vw]">
               <Image
                 src="/srijanbijjam.JPG"
-                alt="Srijan's Photo"
+                alt="Srijan&apos;s Photo"
                 width={250}
                 height={250}
                 priority
