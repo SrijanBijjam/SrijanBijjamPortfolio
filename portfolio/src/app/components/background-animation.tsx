@@ -34,8 +34,9 @@ const BackgroundAnimation = () => {
       color: string
       
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        // Use non-null assertion since we've already checked canvas exists
+        this.x = Math.random() * canvas!.width
+        this.y = Math.random() * canvas!.height
         this.size = Math.random() * 2 + 0.5
         this.speedX = Math.random() * 0.2 - 0.1
         this.speedY = Math.random() * 0.2 - 0.1
@@ -50,17 +51,17 @@ const BackgroundAnimation = () => {
         this.y += this.speedY
         
         // Wrap around edges
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
+        if (this.x > canvas!.width) this.x = 0
+        if (this.x < 0) this.x = canvas!.width
+        if (this.y > canvas!.height) this.y = 0
+        if (this.y < 0) this.y = canvas!.height
       }
       
       draw() {
-        ctx.fillStyle = this.color
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fill()
+        ctx!.fillStyle = this.color
+        ctx!.beginPath()
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        ctx!.fill()
       }
     }
     
@@ -80,12 +81,12 @@ const BackgroundAnimation = () => {
           
           if (distance < maxDistance) {
             const opacity = 1 - (distance / maxDistance)
-            ctx.strokeStyle = `rgba(204, 149, 40, ${opacity * 0.15})`
-            ctx.lineWidth = 0.5
-            ctx.beginPath()
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
-            ctx.stroke()
+            ctx!.strokeStyle = `rgba(204, 149, 40, ${opacity * 0.15})`
+            ctx!.lineWidth = 0.5
+            ctx!.beginPath()
+            ctx!.moveTo(particlesArray[a].x, particlesArray[a].y)
+            ctx!.lineTo(particlesArray[b].x, particlesArray[b].y)
+            ctx!.stroke()
           }
         }
       }
@@ -93,7 +94,7 @@ const BackgroundAnimation = () => {
     
     // Animation loop
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx!.clearRect(0, 0, canvas!.width, canvas!.height)
       
       particlesArray.forEach(particle => {
         particle.update()
