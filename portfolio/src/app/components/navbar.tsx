@@ -18,11 +18,28 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    // Prevent body scrolling when menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMenuOpen])
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <nav className={`fixed top-0 w-full backdrop-blur-sm z-50 transition-all duration-300 ${
       scrolled ? 'bg-[#0E0E0E]/90 shadow-md shadow-[#CC9528]/10' : 'bg-[#0E0E0E]/80'
     }`}>
-      <div className="w-[80vw] mx-auto">
+      <div className="w-[90vw] sm:w-[85vw] md:w-[80vw] mx-auto">
         <div className="flex items-center justify-between h-[8vh]">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
@@ -85,42 +102,75 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* Mobile Menu Overlay */}
+        <div 
+          className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
+            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={closeMenu}
+        ></div>
+
         {/* Mobile Menu */}
         <div 
-          className={`md:hidden py-4 space-y-4 flex flex-col items-center bg-[#0E0E0E]/95 transition-all duration-300 overflow-hidden ${
-            isMenuOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+          className={`fixed left-0 top-[8vh] w-full h-auto max-h-[calc(100vh-8vh)] md:hidden bg-[#0E0E0E]/95 border-t border-[#CC9528]/20 shadow-lg shadow-black/50 z-50 transition-all duration-300 ease-in-out overflow-auto ${
+            isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-[-20px] opacity-0 pointer-events-none'
           }`}
         >
-          <Link href="/resume" className="text-[#CC9528] hover:text-white transition-all duration-300 p-2 relative group hover:scale-110">
-            <FileText className="w-6 h-6" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1 shadow-lg shadow-black/20">
-              Resume
-            </span>
-          </Link>
-          <Link href="https://github.com/SrijanBijjam" className="text-[#CC9528] hover:text-white transition-all duration-300 p-2 relative group hover:scale-110">
-            <Github className="w-6 h-6" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1 shadow-lg shadow-black/20">
-              GitHub
-            </span>
-          </Link>
-          <Link href="https://www.linkedin.com/in/srijan-bijjam/" className="text-[#CC9528] hover:text-white transition-all duration-300 p-2 relative group hover:scale-110">
-            <Linkedin className="w-6 h-6" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1 shadow-lg shadow-black/20">
-              LinkedIn
-            </span>
-          </Link>
-          <Link href="https://www.instagram.com/fiji_sriji/" className="text-[#CC9528] hover:text-white transition-all duration-300 p-2 relative group hover:scale-110">
-            <Instagram className="w-6 h-6" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1 shadow-lg shadow-black/20">
-              Instagram
-            </span>
-          </Link>
-          <Link href="mailto:srijan.bijjam@gmail.com" className="text-[#CC9528] hover:text-white transition-all duration-300 p-2 relative group hover:scale-110">
-            <Mail className="w-6 h-6" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#171717] text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap group-hover:-translate-y-1 shadow-lg shadow-black/20">
-              Email
-            </span>
-          </Link>
+          <div className="flex flex-col p-6 space-y-4">
+            {/* Navigation Links */}
+            <div className="pb-4 border-b border-[#CC9528]/20">
+              <h3 className="text-[#CC9528] font-semibold mb-3 text-sm uppercase tracking-wider">Navigation</h3>
+              <div className="space-y-3">
+                <Link 
+                  href="/resume" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>Resume</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div>
+              <h3 className="text-[#CC9528] font-semibold mb-3 text-sm uppercase tracking-wider">Connect</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <Link 
+                  href="https://github.com/SrijanBijjam" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <Github className="w-5 h-5" />
+                  <span>GitHub</span>
+                </Link>
+                <Link 
+                  href="https://www.linkedin.com/in/srijan-bijjam/" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span>LinkedIn</span>
+                </Link>
+                <Link 
+                  href="https://www.instagram.com/fiji_sriji/" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span>Instagram</span>
+                </Link>
+                <Link 
+                  href="mailto:srijan.bijjam@gmail.com" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>Email</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
