@@ -20,7 +20,7 @@ export default function Home() {
       <PageWrapper>
         <main className="flex min-h-screen flex-col items-center justify-center p-[3vw] sm:p-[4vw] md:p-[5vw] lg:p-[6vw]">
           <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-[80vw] mx-auto gap-[2vw] md:gap-[2vw]">
-            <div className="text-center md:text-right flex-1 relative animate-fade-in order-2 md:order-1 md:pr-[2vw]" style={{ animationDelay: '0.2s' }}>
+            <div className="text-center md:text-right flex-1 relative order-2 md:order-1 md:pr-[2vw]">
               <h1 className="relative z-10 max-w-full overflow-hidden mb-[2vh]">
                 <div className="flex flex-nowrap items-baseline justify-center md:justify-end">
                   <span 
@@ -39,13 +39,13 @@ export default function Home() {
               </h1>
               
               <p 
-                className={`${averiaLibre.className} text-[2.5vw] sm:text-[2vw] md:text-[1.7vw] lg:text-[1.4vw] text-white max-w-full relative z-10 animate-fade-in text-center md:text-right`} 
-                style={{ animationDelay: '0.5s', textShadow: '0 0 10px rgba(255,255,255,0.2)' }}
+                className={`${averiaLibre.className} text-[2.5vw] sm:text-[2vw] md:text-[1.7vw] lg:text-[1.4vw] text-white max-w-full relative z-10 text-center md:text-right`} 
+                style={{ textShadow: '0 0 10px rgba(255,255,255,0.2)' }}
               >
                 tOSU Grad. Software Engineer. Chill Guy. Let&apos;s connect.
               </p>
             </div>
-            <div className="flex-1 flex justify-center animate-fade-in order-1 md:order-2 md:pl-[2vw]" style={{ animationDelay: '0.3s' }}>
+            <div className="flex-1 flex justify-center order-1 md:order-2 md:pl-[2vw]">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#CC9528] to-[#e9b446] rounded-3xl blur opacity-40 group-hover:opacity-75 transition duration-1000"></div>
                 <Image

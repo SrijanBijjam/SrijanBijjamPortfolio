@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useState, useCallback } from 'react'
 
 const routes = ['/', '/work', '/skills']
 const routeNames = ['Home', 'Work', 'Skills']
@@ -14,56 +14,16 @@ export default function ScrollNav() {
   const [isScrolling, setIsScrolling] = useState(false)
   const [isHovered, setIsHovered] = useState<number | null>(null)
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault()
-      if (isScrolling) return
-
-      if (e.deltaY > 0 && currentIndex < routes.length - 1) {
-        setIsScrolling(true)
-        router.push(routes[currentIndex + 1])
-        setTimeout(() => setIsScrolling(false), 1000)
-      } else if (e.deltaY < 0 && currentIndex > 0) {
-        setIsScrolling(true)
-        router.push(routes[currentIndex - 1])
-        setTimeout(() => setIsScrolling(false), 1000)
-      }
-    }
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isScrolling) return
-      const touchEndY = e.touches[0].clientY
-      const deltaY = touchStartY - touchEndY
-
-      if (Math.abs(deltaY) > 50) { // Threshold for swipe
-        if (deltaY > 0 && currentIndex < routes.length - 1) {
-          setIsScrolling(true)
-          router.push(routes[currentIndex + 1])
-          setTimeout(() => setIsScrolling(false), 1000)
-        } else if (deltaY < 0 && currentIndex > 0) {
-          setIsScrolling(true)
-          router.push(routes[currentIndex - 1])
-          setTimeout(() => setIsScrolling(false), 1000)
-        }
-      }
-    }
-
-    let touchStartY = 0
-
-    document.addEventListener('wheel', handleWheel, { passive: false })
-    document.addEventListener('touchstart', handleTouchStart)
-    document.addEventListener('touchmove', handleTouchMove)
-
-    return () => {
-      document.removeEventListener('wheel', handleWheel)
-      document.removeEventListener('touchstart', handleTouchStart)
-      document.removeEventListener('touchmove', handleTouchMove)
-    }
-  }, [currentIndex, router, isScrolling])
+  // Memoize navigation to prevent double calls
+  const navigateTo = useCallback((index: number) => {
+    if (isScrolling || index === currentIndex || index < 0 || index >= routes.length) return
+    
+    setIsScrolling(true)
+    router.push(routes[index])
+    
+    // Cooldown period to prevent quick double-triggers
+    setTimeout(() => setIsScrolling(false), 1000)
+  }, [currentIndex, isScrolling, router]);
 
   return (
     <div className="fixed right-4 md:right-[5vw] top-1/2 -translate-y-1/2 flex flex-col gap-4 z-40">
@@ -83,7 +43,7 @@ export default function ScrollNav() {
           </AnimatePresence>
           
           <motion.button
-            onClick={() => router.push(route)}
+            onClick={() => navigateTo(index)}
             className="w-8 h-8 flex items-center justify-center relative"
             whileHover={{ scale: 1.2 }}
             onMouseEnter={() => setIsHovered(index)}

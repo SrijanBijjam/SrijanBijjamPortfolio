@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 export default function PageWrapper({
   children,
@@ -12,35 +12,54 @@ export default function PageWrapper({
 }) {
   const [isMobile, setIsMobile] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    // Only run this effect once on mount
+    if (!isLoaded) {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768)
+      }
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+      
+      // Set loaded immediately to prevent flicker
+      setIsLoaded(true)
+      
+      return () => {
+        window.removeEventListener('resize', checkMobile)
+      }
     }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
-    // Set loaded after a small delay to ensure smooth animation
-    const timer = setTimeout(() => setIsLoaded(true), 100)
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile)
-      clearTimeout(timer)
-    }
-  }, [])
+  }, [isLoaded])
 
-  // Page transition variants
+  // Page transition variants - simplified for smoother transitions
   const variants = {
-    hidden: { opacity: 0, y: 20 },
-    enter: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0 },
+    enter: { 
+      opacity: 1, 
+      transition: { 
+        duration: 0.4,
+        ease: "easeOut",
+        when: "beforeChildren"
+      } 
+    },
+    exit: { 
+      opacity: 0, 
+      transition: { 
+        duration: 0.3, 
+        ease: "easeIn" 
+      } 
+    }
   }
+
+  // Skip animations if user prefers reduced motion
+  const skipAnimation = prefersReducedMotion || !isLoaded
 
   return (
     <motion.div 
       className={`w-full ${className} ${isMobile ? '' : 'h-screen'} overflow-hidden`}
-      initial="hidden"
-      animate={isLoaded ? "enter" : "hidden"}
+      initial={skipAnimation ? false : "hidden"}
+      animate="enter"
       exit="exit"
       variants={variants}
     >
