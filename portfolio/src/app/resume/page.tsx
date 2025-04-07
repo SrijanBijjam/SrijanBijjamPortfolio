@@ -100,7 +100,7 @@ export default function Resume() {
           variants={resumeFrameVariants}
         >
           <iframe 
-            src="/SrijanBijjamResumeOriginal (25).pdf" 
+            src="/SrijanBijjamResumeOriginal (27).pdf" 
             className="w-full h-full"
           />
         </motion.div>
