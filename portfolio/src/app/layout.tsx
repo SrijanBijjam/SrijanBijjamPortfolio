@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import BackgroundAnimation from "./components/background-animation";
+import { AnimatePresence } from "framer-motion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}>
         <BackgroundAnimation />
         <Navbar />
-        {children}
+        <AnimatePresence mode="wait">
+          {children}
+        </AnimatePresence>
         <Footer />
       </body>
     </html>

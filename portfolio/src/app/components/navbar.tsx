@@ -129,6 +129,22 @@ export default function Navbar() {
                   <FileText className="w-5 h-5" />
                   <span>Resume</span>
                 </Link>
+                <Link 
+                  href="/work" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>Work</span>
+                </Link>
+                <Link 
+                  href="/skills" 
+                  className="flex items-center gap-3 text-white hover:text-[#CC9528] transition-all duration-300 p-2 rounded-md hover:bg-white/5"
+                  onClick={closeMenu}
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>Skills</span>
+                </Link>
               </div>
             </div>
 

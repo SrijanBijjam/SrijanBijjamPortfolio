@@ -63,20 +63,91 @@ export default function Work() {
     }
   ]
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+  
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5,
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const titleVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.4 }
+    }
+  };
+  
+  const cardContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+  
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 15 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0, 
+      transition: { duration: 0.4 }
+    }
+  };
+
   return (
     <>
       <ScrollNav />
       <PageWrapper>
         <main className="flex min-h-screen flex-col items-center justify-center p-[3vw] sm:p-[4vw] md:p-[5vw] lg:p-[6vw]">
-          <div className="w-full max-w-[85vw] md:max-w-[80vw] mx-auto flex flex-col md:flex-row gap-[3vw] md:gap-[4vw]">
-            <section className="w-full md:w-[35%]">
-              <h2 className="text-[4vw] sm:text-[3vw] md:text-[2.5vw] lg:text-[2vw] font-bold text-[#CC9528] mb-[1vh] text-center md:text-left">WORK</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[2vw] md:gap-[2vw]">
+          <motion.div 
+            className="w-full max-w-[85vw] md:max-w-[80vw] mx-auto flex flex-col md:flex-row gap-[3vw] md:gap-[4vw]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.section 
+              className="w-full md:w-[35%]" 
+              variants={sectionVariants}
+            >
+              <motion.h2 
+                className="text-[4vw] sm:text-[3vw] md:text-[2.5vw] lg:text-[2vw] font-bold text-[#CC9528] mb-[1vh] text-center md:text-left"
+                variants={titleVariants}
+              >
+                WORK
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-1 sm:grid-cols-2 gap-[2vw] md:gap-[2vw]"
+                variants={cardContainerVariants}
+              >
                 {workExperience.map((work) => (
                   <motion.div
                     key={work.title}
                     className="relative w-full h-[15vw] sm:h-[18vw] md:h-[16vw] lg:h-[12vw] rounded-lg overflow-hidden group"
                     whileHover={{ scale: 1.02 }}
+                    variants={cardVariants}
                   >
                     <Image
                       src={work.image}
@@ -97,19 +168,40 @@ export default function Work() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
 
-            <div className="w-full md:w-[1px] h-[1px] md:h-auto bg-[#CC9528] self-stretch my-[1vh] md:mt-[8vh] md:mb-[2vh]" />
+            <motion.div 
+              className="w-full md:w-[1px] h-[1px] md:h-auto bg-[#CC9528] self-stretch my-[1vh] md:mt-[8vh] md:mb-[2vh]"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { 
+                  opacity: 1,
+                  transition: { delay: 0.3, duration: 0.5 }
+                }
+              }}
+            />
 
-            <section className="w-full md:w-[55%]">
-              <h2 className="text-[4vw] sm:text-[3vw] md:text-[2.5vw] lg:text-[2vw] font-bold text-[#CC9528] mb-[1vh] text-center md:text-left">PROJECTS</h2>
-              <div className="grid grid-cols-2 gap-[2vw] md:gap-[2vw]">
+            <motion.section 
+              className="w-full md:w-[55%]"
+              variants={sectionVariants}
+            >
+              <motion.h2 
+                className="text-[4vw] sm:text-[3vw] md:text-[2.5vw] lg:text-[2vw] font-bold text-[#CC9528] mb-[1vh] text-center md:text-left"
+                variants={titleVariants}
+              >
+                PROJECTS
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-2 gap-[2vw] md:gap-[2vw]"
+                variants={cardContainerVariants}
+              >
                 {projects.map((project) => (
                   <motion.div
                     key={project.title}
                     className={`relative w-full h-[15vw] sm:h-[18vw] md:h-[16vw] lg:h-[12vw] rounded-lg overflow-hidden group`}
                     whileHover={{ scale: 1.02 }}
+                    variants={cardVariants}
                   >
                     <Image
                       src={project.image}
@@ -136,9 +228,9 @@ export default function Work() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </section>
-          </div>
+              </motion.div>
+            </motion.section>
+          </motion.div>
         </main>
       </PageWrapper>
     </>

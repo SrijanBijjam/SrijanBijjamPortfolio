@@ -66,20 +66,72 @@ export default function Skills() {
     { name: 'Figma', icon: <FigmaOriginal size={24} /> },
   ];
 
+  // Animation variants
+  const sectionVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const gridVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.05,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 10 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.4 }
+    }
+  };
+
   return (
     <>
       <ScrollNav />
       <PageWrapper>
         <main className="flex min-h-screen flex-col items-center justify-between p-[2vw] sm:p-[3vw] md:p-[4vw] lg:p-[5vw]">
-          <div className="w-full max-w-[85vw] sm:max-w-[85vw] md:max-w-[80vw] lg:max-w-[75vw] mx-auto space-y-[2.5vh] sm:space-y-[3vh] mt-[10vh] sm:mt-[5vh] md:mt-0">
-            <section className="space-y-[1vh] sm:space-y-[1.5vh]">
-              <h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">Programming Languages</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]">
+          <motion.div 
+            className="w-full max-w-[85vw] sm:max-w-[85vw] md:max-w-[80vw] lg:max-w-[75vw] mx-auto space-y-[2.5vh] sm:space-y-[3vh] mt-[10vh] sm:mt-[5vh] md:mt-0"
+            variants={sectionVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.section className="space-y-[1vh] sm:space-y-[1.5vh]" variants={itemVariants}>
+              <motion.h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">
+                Programming Languages
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]"
+                variants={gridVariants}
+              >
                 {programmingLanguages.map((lang) => (
                   <motion.button
                     key={lang.name}
                     className="flex items-center gap-[1vw] sm:gap-[0.8vw] p-[0.8vw] sm:p-[0.8vw] md:p-[0.8vw] lg:p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
+                    variants={cardVariants}
                   >
                     <div className="w-[2.8vw] sm:w-[2.5vw] md:w-[2vw] lg:w-[1.2vw] flex items-center justify-center">
                       {lang.icon}
@@ -87,17 +139,23 @@ export default function Skills() {
                     <span className="text-[2vw] sm:text-[1.7vw] md:text-[1.4vw] lg:text-[0.8vw]">{lang.name}</span>
                   </motion.button>
                 ))}
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
 
-            <section className="space-y-[1vh] sm:space-y-[1.5vh]">
-              <h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">Languages</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]">
+            <motion.section className="space-y-[1vh] sm:space-y-[1.5vh]" variants={itemVariants}>
+              <motion.h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">
+                Languages
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]"
+                variants={gridVariants}
+              >
                 {languages.map((lang) => (
                   <motion.button
                     key={lang.name}
                     className="flex items-center gap-[1vw] sm:gap-[0.8vw] p-[0.8vw] sm:p-[0.8vw] md:p-[0.8vw] lg:p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
+                    variants={cardVariants}
                   >
                     <div className="w-[2.8vw] sm:w-[2.5vw] md:w-[2vw] lg:w-[1.2vw] flex items-center justify-center">
                       {lang.icon}
@@ -105,17 +163,23 @@ export default function Skills() {
                     <span className="text-[2vw] sm:text-[1.7vw] md:text-[1.4vw] lg:text-[0.8vw]">{lang.name}</span>
                   </motion.button>
                 ))}
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
 
-            <section className="space-y-[1vh] sm:space-y-[1.5vh] pb-[1vh]">
-              <h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">Technical Skills</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]">
+            <motion.section className="space-y-[1vh] sm:space-y-[1.5vh] pb-[1vh]" variants={itemVariants}>
+              <motion.h2 className="text-[2.8vw] sm:text-[2.6vw] md:text-[2.5vw] lg:text-[1.5vw] font-bold text-[#CC9528]">
+                Technical Skills
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1.5vw] sm:gap-[1.2vw] md:gap-[1.2vw] lg:gap-[1vw]"
+                variants={gridVariants}
+              >
                 {technicalSkills.map((skill) => (
                   <motion.button
                     key={skill.name}
                     className="flex items-center gap-[1vw] sm:gap-[0.8vw] p-[0.8vw] sm:p-[0.8vw] md:p-[0.8vw] lg:p-[0.5vw] rounded-lg bg-[#171717] hover:bg-[#CC9528] text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
+                    variants={cardVariants}
                   >
                     <div className="w-[2.8vw] sm:w-[2.5vw] md:w-[2vw] lg:w-[1.2vw] flex items-center justify-center">
                       {skill.icon}
@@ -123,9 +187,9 @@ export default function Skills() {
                     <span className="text-[2vw] sm:text-[1.7vw] md:text-[1.4vw] lg:text-[0.8vw]">{skill.name}</span>
                   </motion.button>
                 ))}
-              </div>
-            </section>
-          </div>
+              </motion.div>
+            </motion.section>
+          </motion.div>
           <Footer />
         </main>
       </PageWrapper>

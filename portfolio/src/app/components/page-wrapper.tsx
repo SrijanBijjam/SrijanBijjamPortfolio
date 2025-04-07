@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 export default function PageWrapper({
@@ -32,23 +32,25 @@ export default function PageWrapper({
     }
   }, [isLoaded])
 
-  // Page transition variants - simplified for smoother transitions
-  const variants = {
+  // Content animation variants
+  const contentVariants = {
     hidden: { opacity: 0 },
-    enter: { 
-      opacity: 1, 
+    visible: { 
+      opacity: 1,
       transition: { 
         duration: 0.4,
-        ease: "easeOut",
-        when: "beforeChildren"
-      } 
-    },
-    exit: { 
-      opacity: 0, 
-      transition: { 
-        duration: 0.3, 
-        ease: "easeIn" 
-      } 
+        staggerChildren: 0.1 
+      }
+    }
+  }
+
+  // Child element variants for staggered entry
+  const childVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.3 }
     }
   }
 
@@ -56,15 +58,21 @@ export default function PageWrapper({
   const skipAnimation = prefersReducedMotion || !isLoaded
 
   return (
-    <motion.div 
-      className={`w-full ${className} ${isMobile ? '' : 'h-screen'} overflow-hidden`}
-      initial={skipAnimation ? false : "hidden"}
-      animate="enter"
-      exit="exit"
-      variants={variants}
-    >
-      {children}
+    <div className={`w-full ${className} ${isMobile ? '' : 'h-screen'} overflow-hidden`}>
+      <motion.div
+        className="w-full h-full"
+        initial={skipAnimation ? "visible" : "hidden"}
+        animate="visible"
+        variants={contentVariants}
+      >
+        {/* Wrap children in motion elements that will stagger in */}
+        {React.Children.map(children, (child, i) => (
+          <motion.div key={i} variants={childVariants}>
+            {child}
+          </motion.div>
+        ))}
+      </motion.div>
       <div className="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-br from-[#0E0E0E] to-[#121212] opacity-40" />
-    </motion.div>
+    </div>
   )
 } 
